@@ -38,6 +38,9 @@ version:
 dcup:
 	docker-compose up --build -d
 
+dcdown:
+	docker-compose down
+
 
 # ==================================================================================== # 
 # DATABASE
