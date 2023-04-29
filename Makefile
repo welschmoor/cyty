@@ -23,7 +23,7 @@ confirm:
 # ==================================================================================== #
 
 run:
-	go run ./cmd/api/ -db-dsn=${DSN}
+	go run ./cmd/api/ -db-dsn=${DSN} -limiter-enabled=false
 
 build:
 	go build -ldflags="-s -w" -o=./bin/api ./cmd/api
@@ -59,8 +59,17 @@ mdown: confirm
 mdownone: confirm
 	migrate -path migrations -database ${DSN} -verbose down 1
 
+## itdb: interact with db. -d is for name, -U for user
 itdb:
-	docker exec -it listingsservice psql -U ${POSTGRES_USER}
+	docker compose exec -it cyty psql -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+
+## itdb: interact with db. -d is for name, -U for user
+itbash:
+	docker compose exec -it cyty bash
+
+## pgconf: see the
+pgconf:
+	docker compose exec -it cyty cat /var/lib/postgresql/data/postgresql.conf
 
 
 # ==================================================================================== # 
