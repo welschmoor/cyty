@@ -30,7 +30,7 @@ build:
 	GOOS=linux GOARCH=arm64 go build -ldflags="-s -w" -o=./bin/linux_arm64/api ./cmd/api
 
 start:
-	./bin/api -port=4040 -db-dsn=${DSN} -limiter-enabled=false
+	./bin/api -port=4001 -db-dsn=${DSN} -limiter-enabled=false
 
 version:
 	go run ./cmd/api/ -version

@@ -15,8 +15,10 @@ func (app *application) routes() http.Handler {
 	router.HandlerFunc(http.MethodGet, "/v1/healthcheck", app.healthcheckHandler)
 
 	router.HandlerFunc(http.MethodGet, "/v1/listings", app.getAllListings)
-	router.HandlerFunc(http.MethodPost, "/v1/listings", app.requirePermission("listings:write", app.postListing))
-	router.HandlerFunc(http.MethodGet, "/v1/listings/:id", app.requirePermission("listings:read", app.getListingById))
+	router.HandlerFunc(http.MethodPost, "/v1/listings", app.postListing)
+	router.HandlerFunc(http.MethodGet, "/v1/listings/:id", app.getListingById)
+	// router.HandlerFunc(http.MethodPost, "/v1/listings", app.requirePermission("listings:write", app.postListing))
+	// router.HandlerFunc(http.MethodGet, "/v1/listings/:id", app.requirePermission("listings:read", app.getListingById))
 	router.HandlerFunc(http.MethodPatch, "/v1/listings/:id", app.patchListingById)
 	router.HandlerFunc(http.MethodDelete, "/v1/listings/:id", app.deleteListingById)
 
